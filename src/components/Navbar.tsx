@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import saark from "../assets/saark.jpg";
 
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
+  {
+    label: "Services",
+    dropdown: [
+      { to: "/services/it-services", label: "IT Services" },
+      { to: "/services/cloud-solutions", label: "Cloud Services" },
+      { to: "/services/cybersecurity", label: "CyberSecurity Services" },
+      { to: "/services/networking-infrastructure", label: "Networking & Infrastructure " },
+      { to: "/services/itconsulting", label: "IT Consulting" },
+      { to: "/services/databackup-recovery", label: "Data Backup & Recovery" },
+    ],
+  },
   { to: "/insights", label: "Insights" },
   { to: "/contact", label: "Contact" },
 ];
 
 const Navbar: React.FC = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // mobile menu
+  const [dropdownOpen, setDropdownOpen] = useState(false); // desktop dropdown
   const location = useLocation();
 
   return (
@@ -32,16 +43,47 @@ const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center space-x-10">
-            {links.map((l) => {
-              const active =
-                l.to === "/"
-                  ? location.pathname === "/"
-                  : location.pathname.startsWith(l.to);
+<div className="hidden md:flex items-center space-x-10">
+  {links.map((l) => {
+    const active =
+      l.to === "/"
+        ? location.pathname === "/"
+        : location.pathname.startsWith(l.to || "");
+
+    if (l.dropdown) {
+      return (
+        <div key={l.label} className="relative group">
+          <button
+            className={`flex items-center gap-1 text-base font-medium transition ${
+              active
+                ? "text-green-600 underline underline-offset-4 decoration-2"
+                : "text-gray-800 hover:text-black"
+            }`}
+          >
+            {l.label} <ChevronDown size={16} />
+          </button>
+
+          {/* Dropdown menu */}
+          <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50">
+            {l.dropdown.map((d) => (
+              <Link
+                key={d.to}
+                to={d.to}
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+              >
+                {d.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+
               return (
                 <Link
                   key={l.to}
-                  to={l.to}
+                  to={l.to!}
                   className={`text-base font-medium transition-colors ${
                     active
                       ? "text-green-600 underline underline-offset-4 decoration-2"
@@ -80,20 +122,38 @@ const Navbar: React.FC = () => {
         <div className="md:hidden bg-white border-t border-gray-200 shadow-md">
           <div className="px-6 py-4 space-y-3">
             {links.map((l) => {
-              const active =
-                l.to === "/"
-                  ? location.pathname === "/"
-                  : location.pathname.startsWith(l.to);
+              if (l.dropdown) {
+                return (
+                  <div key={l.label}>
+                    <button
+                      onClick={() =>
+                        setDropdownOpen((prev) => !prev)
+                      }
+                      className="w-full flex justify-between items-center px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-50 rounded-md"
+                    >
+                      {l.label} <ChevronDown size={16} />
+                    </button>
+                    {dropdownOpen &&
+                      l.dropdown.map((d) => (
+                        <Link
+                          key={d.to}
+                          to={d.to}
+                          onClick={() => setOpen(false)}
+                          className="block pl-6 py-2 text-gray-700 hover:bg-gray-50 rounded-md"
+                        >
+                          {d.label}
+                        </Link>
+                      ))}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={l.to}
-                  to={l.to}
+                  to={l.to!}
                   onClick={() => setOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-base font-medium transition ${
-                    active
-                      ? "text-green-600 bg-gray-100"
-                      : "text-gray-800 hover:bg-gray-50"
-                  }`}
+                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-50"
                 >
                   {l.label}
                 </Link>
