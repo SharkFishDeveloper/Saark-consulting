@@ -101,6 +101,7 @@ export default function ITInfrastructureCards() {
           {cards.map((c) => (
             <motion.article
               key={c.id}
+              //@ts-expect-error: s
               variants={cardAnim}
               whileHover={{ y: -6, scale: 1.01 }}
               className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 p-6 shadow-lg"

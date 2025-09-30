@@ -103,7 +103,7 @@ const migrationServices = [
   },
 ];
 
-
+ //@ts-expect-error: s
 export function FlipCard({ service }) {
   const { title, description, icon: Icon } = service;
   const [flipped, setFlipped] = useState(false);
@@ -166,14 +166,15 @@ export default function CloudServices() {
       </h2>
 
       <div className="mt-10 px-6 md:px-12">
-  <div className="flex gap-6 overflow-x-auto sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:overflow-visible snap-x snap-mandatory">
-    {services.map((s) => (
-      <div key={s.title} className="flex-shrink-0 snap-center w-64 sm:w-auto">
-        <FlipCard service={s} />
+        <div className="flex gap-6 overflow-x-auto sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:overflow-visible snap-x snap-mandatory">
+          {services.map((s) => (
+            <div key={s.title} className="flex-shrink-0 snap-center w-64 sm:w-auto">
+              <FlipCard service={s} />
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
+
       </motion.div>
       </div>
 

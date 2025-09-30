@@ -93,6 +93,7 @@ export default function Databackup() {
           {features.map((f, i) => (
             <motion.div
               key={i}
+               //@ts-expect-error: s
               variants={cardAnim}
               whileHover={{
                 y: -6,

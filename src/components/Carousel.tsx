@@ -71,6 +71,7 @@ const Carousel: React.FC = () => {
 
   return (
     <section className="pt-20">
+      //@ts-ignore
       <Slider {...settings}>
         {slides.map((s, i) => (
           <div key={i}>

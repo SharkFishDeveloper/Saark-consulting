@@ -10,14 +10,6 @@ export default function ContactPage() {
     { type: "Email", value: "corporate@saarkconsulting.com", icon: <Mail className="w-5 h-5" /> },
   ];
 
-  const copyToClipboard = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      alert(`${text} copied to clipboard`);
-    } catch (err) {
-      console.error("Copy failed", err);
-    }
-  };
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-[#f7fbf7] via-white to-[#f1f8f4] px-4 sm:px-6 md:px-12 py-12 mt-20">

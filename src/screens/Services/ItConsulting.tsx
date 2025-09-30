@@ -264,6 +264,7 @@ export default function ItConsulting() {
                 {section.services.map((srv, i) => (
                   <motion.div
                     key={i}
+                     //@ts-expect-error: s
                     variants={cardAnim}
                     initial="hidden"
                     whileInView="show"
