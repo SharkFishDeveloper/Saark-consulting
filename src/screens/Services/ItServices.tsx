@@ -1,6 +1,8 @@
 import { ShieldCheck, Cloud, Network, Server, Laptop, Database, Users, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ItServicesHome() {
+  const navigate = useNavigate();
   const services = [
     {
       title: "Managed IT Services",
@@ -125,9 +127,12 @@ export default function ItServicesHome() {
           Talk to our experts today and discover how we can simplify your
           technology journey.
         </p>
-        <button className="mt-6 px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-md transition">
-          Contact Us
-        </button>
+         <button
+      className="mt-6 px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-md transition"
+      onClick={() => navigate("/contact")}
+    >
+      Contact Us
+    </button>
       </div>
     </section>
   );

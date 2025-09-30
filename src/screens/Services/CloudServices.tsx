@@ -104,7 +104,7 @@ const migrationServices = [
 ];
 
 
-function FlipCard({ service }) {
+export function FlipCard({ service }) {
   const { title, description, icon: Icon } = service;
   const [flipped, setFlipped] = useState(false);
 

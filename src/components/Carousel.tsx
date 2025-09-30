@@ -87,21 +87,21 @@ const Carousel: React.FC = () => {
               <div className="absolute inset-0 bg-black/55" />
 
               {/* content box (no up animation) */}
-              <div className="relative z-10 px-4 max-w-4xl mx-auto flex flex-col items-center">
-                <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white leading-tight">
-                  {s.title}
-                </h1>
+              <div className="relative z-10 px-4 sm:px-6 max-w-full sm:max-w-2xl mx-auto flex flex-col items-center">
+  <h1 className="text-xl sm:text-2xl md:text-5xl font-extrabold text-white leading-tight">
+    {s.title}
+  </h1>
 
-                <p className="mt-4 text-white/90 max-w-2xl text-sm sm:text-base md:text-lg">
-                  {s.text}
-                </p>
+  <p className="mt-4 text-white/90 text-sm sm:text-base md:text-lg">
+    {s.text}
+  </p>
 
-                <div className="mt-6">
-                  <button className="px-6 py-3 rounded-2xl bg-green-600 text-white font-semibold shadow hover:bg-green-700 transition">
-                    {s.button}
-                  </button>
-                </div>
-              </div>
+  <div className="mt-6">
+    <button className="px-4 sm:px-6 py-2 sm:py-3 rounded-2xl bg-green-600 text-white font-semibold shadow hover:bg-green-700 transition">
+      {s.button}
+    </button>
+  </div>
+</div>
 
               {/* small mobile gradient to help readability near bottom */}
               <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/60 to-transparent md:hidden" />

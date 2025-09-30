@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import saark from "../assets/saark.jpg";
 
+
+
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
@@ -16,9 +18,7 @@ const links = [
       { to: "/services/itconsulting", label: "IT Consulting" },
       { to: "/services/databackup-recovery", label: "Data Backup & Recovery" },
     ],
-  },
-  { to: "/insights", label: "Insights" },
-  { to: "/contact", label: "Contact" },
+  }
 ];
 
 const Navbar: React.FC = () => {
@@ -45,10 +45,11 @@ const Navbar: React.FC = () => {
           {/* Desktop links */}
 <div className="hidden md:flex items-center space-x-10">
   {links.map((l) => {
-    const active =
-      l.to === "/"
-        ? location.pathname === "/"
-        : location.pathname.startsWith(l.to || "");
+    const active = l.to
+  ? l.to === "/" 
+    ? location.pathname === "/" 
+    : location.pathname.startsWith(l.to)
+  : false;
 
     if (l.dropdown) {
       return (

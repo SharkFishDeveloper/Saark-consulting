@@ -30,9 +30,9 @@ const Footer = () => {
               "Software Services",
             ].map((service, index) => (
               <li key={index}>
-                <a href="#" className="hover:text-green-500 transition">
+                <p  className="hover:text-green-500 transition">
                   {service}
-                </a>
+                </p>
               </li>
             ))}
           </ul>
