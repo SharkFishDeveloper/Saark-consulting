@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
             <img
               src={saark}
               alt="Saark Consulting"
-              className="h-12 w-12 rounded-md object-cover"
+              className="h-16 w-16 sm:h-20 sm:h-20 rounded-md object-cover"
             />
             <span className="text-lg font-bold text-gray-900">
               Saark Consulting
